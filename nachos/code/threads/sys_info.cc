@@ -78,7 +78,7 @@ Disk:\n\
   Sectors per track: %u.\n\
   Number of tracks: %u.\n\
   Number of sectors: %u.\n\
-  Disk size: %u bytes.\n",
+  Disk size: %lu bytes.\n",
       SECTOR_SIZE, SECTORS_PER_TRACK, NUM_TRACKS, 
       NUM_SECTORS, sizeof (int) + NUM_SECTORS * SECTOR_SIZE);
     
