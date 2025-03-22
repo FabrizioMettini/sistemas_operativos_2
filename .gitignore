@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# Project specific
+*Makefile.depends
+nachos
+nachos/code/bin/readnoff
+nachos/code/bin/coff2flat
+nachos/code/bin/coff2noff
+nachos/code/bin/disassemble
+!nachos/
