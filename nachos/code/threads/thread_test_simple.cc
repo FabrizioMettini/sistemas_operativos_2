@@ -11,17 +11,17 @@
 #include <stdio.h>
 #include <string.h>
 
-/// NOTE: The total amount of threads will be N_THREADS + 1 (the "main" thread). 
-#define N_THREADS 4 
 
 /// Loop 10 times, yielding the CPU to another ready thread each iteration.
 ///
 /// * `name` points to a string with a thread name, just for debugging
 ///   purposes.
 
-const char *threadName[N_THREADS] = {"2nd", "3rd", "4th", "5th"};
-bool threadIDone[N_THREADS] = {false};
-void
+/// NOTE: The total amount of threads will be N_THREADS + 1 (the "main" thread). 
+static const unsigned N_THREADS = 4; 
+static const char *threadName[N_THREADS] = {"2nd", "3rd", "4th", "5th"};
+static bool done[N_THREADS] = {false};
+static void
 SimpleThread(void *name_)
 {
 
@@ -34,7 +34,7 @@ SimpleThread(void *name_)
     }
     for (unsigned i = 0; i < N_THREADS; i++) {
         if (strcmp(currentThread->GetName(),threadName[i])==0) {
-            threadIDone[i] = true;
+            done[i] = true;
         }
     }
     printf("!!! Thread `%s` has finished SimpleThread\n", currentThread->GetName());
@@ -58,15 +58,10 @@ ThreadTestSimple()
     SimpleThread(NULL);
 
     //Wait for the new threads to finish if needed
-    bool waiting;
-    do {
-        waiting = false;
-        for (unsigned i = 0; i < N_THREADS; i++) {
-            if (!threadIDone[i]) {
-                waiting = true;
-                currentThread->Yield(); 
-            }
+    for (unsigned i = 0; i < N_THREADS; i++) {
+        while (!done[i]) {
+            currentThread->Yield(); 
         }
-    } while (waiting);
+    }
     printf("Test finished\n");
 }
