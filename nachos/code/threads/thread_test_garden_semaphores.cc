@@ -73,4 +73,5 @@ ThreadTestGardenSemaphores()
     }
     delete []values;
     delete []names;
+    delete sem;
 }
