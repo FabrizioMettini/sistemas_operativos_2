@@ -19,8 +19,8 @@
 /// * `name` points to a string with a thread name, just for debugging
 ///   purposes.
 
-const char *threadName[4] = {"2nd", "3rd", "4th", "5th"};
-bool threadIDone[4] = {false};
+const char *threadName[N_THREADS] = {"2nd", "3rd", "4th", "5th"};
+bool threadIDone[N_THREADS] = {false};
 void
 SimpleThread(void *name_)
 {
