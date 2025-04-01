@@ -6,4 +6,4 @@ La diferencia radica en que la clase SynchList permite la sincronización entre 
 En particular, SynchList impone las siguientes restricciones:
 
 - En cada momento, a lo sumo un hilo puede acceder a la estructura de datos.
-- Los hilos que deseen remover un elemento de la lista hasta que la lista no este vacía.
+- Los hilos que deseen remover un elemento de la lista esperarán hasta que la lista no este vacía para poder hacerlo.
